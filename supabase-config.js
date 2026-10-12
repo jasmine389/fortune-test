@@ -1,7 +1,6 @@
 // Supabase 配置
-// 部署时填入你的项目 URL 和 anon key（Supabase Dashboard → Settings → API）
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://sezvjgokrkibojnnhfyx.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_sjhBl2F6mAY3PlmJaQkQ9g_daK4YwNt';
 
 let supabaseClient = null;
 
