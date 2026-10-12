@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="UAzQXlYZkvE0MIYmoNxg0R">
+<head data-page-node-id="gc5KDlljef07hLwNJCLiu5">
+  <meta charset="UTF-8" data-page-node-id="j2uplJ23cegwDEJdsZoJC7">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" data-page-node-id="gAffu2jdcXpWrrbPF7KHRS">
+  <title>你的财运体质测试</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="styles.css" data-page-node-id="U3JnV9f1BsGASbQ6Zoz4WV">
+</head>
+<body class="bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800 min-h-screen text-gray-800" data-page-node-id="fcB2qy7lONQxZPhzTVYOHJ">
+
+  <!-- 登录页 -->
+  <section id="login-page" class="page active flex items-center justify-center min-h-screen p-4" data-page-node-id="sqUFJS1qFabb23xnsUMUDu">
+    <div class="card w-full max-w-md p-8 text-center" data-page-node-id="tEP0g5ewsZs287bTFjtCbR">
+      <div class="text-6xl mb-4" data-page-node-id="nGt6ilwLSB06hfI9bCdFWj">💰</div>
+      <h1 class="text-2xl font-bold text-gray-900 mb-2" data-page-node-id="QTFtX8xaNAmEsTIuryfQDu">你的财运体质测试</h1>
+      <p class="text-sm text-gray-500 mb-6" data-page-node-id="YQmA0IYQFvGc7567RdTXxv">30秒测出你的吸金/破财/守财 DNA</p>
+      
+      <div class="mb-4 text-left" data-page-node-id="i7zxG7aYvriSYEFYGjMC5q">
+        <label class="block text-sm font-medium text-gray-700 mb-1" data-page-node-id="3xhHIB2b73HQPjss4TQKSh">输入测评密钥</label>
+        <input type="text" id="password-input" placeholder="请输入密钥（如：CF-XXXX-XXXX-XXXX）" 
+          class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 text-base" data-page-node-id="3qchurMACluXO77HAvaLsS">
+        <p class="text-xs text-gray-400 mt-1">每个密钥可测试 3 次 · 购买后自动发货</p>
+      </div>
+      
+      <button id="start-btn" class="btn-primary w-full py-3 rounded-xl text-white font-semibold text-base shadow-lg">
+        开始测试
+      </button>
+      <p id="login-error" class="text-red-500 text-sm mt-3 hidden" data-page-node-id="zFFhVV40riVpPb1yxq8gZG"></p>
+    </div>
+  </section>
+
+  <!-- 答题页 -->
+  <section id="quiz-page" class="page hidden min-h-screen p-4" data-page-node-id="fZXwYhidsdDFiUpsgHw2B3">
+    <div class="max-w-md mx-auto pt-4 pb-8" data-page-node-id="sQYbBrBmNL7lApHjhbeYnc">
+      <!-- 进度 -->
+      <div class="flex items-center justify-between mb-6 text-white/80 text-sm" data-page-node-id="P7xzMwU2br1v8lGOkm223Y">
+        <span id="progress-text" data-page-node-id="PZpIx1CjnGSzSELoJJ47Bf">第 1 / 18 题</span>
+        <span id="progress-percent" data-page-node-id="5AQ7OhDBxMJAFri42PoXcM">6%</span>
+      </div>
+      <div class="h-2 bg-white/20 rounded-full mb-8 overflow-hidden" data-page-node-id="gvt8XHKqdcLwX6LR1ff9u5">
+        <div id="progress-bar" class="h-full bg-gradient-to-r from-yellow-400 to-pink-500 rounded-full transition-all duration-300" style="width: 6%;" data-page-node-id="YbJl2C7QXldbmFExOcNwFr"></div>
+      </div>
+
+      <div class="card p-6 mb-6" data-page-node-id="fSz8DoJcIXcWITUeKnrrbq">
+        <h2 id="question-text" class="text-lg font-bold text-gray-900 leading-relaxed mb-6" data-page-node-id="iK1Pt2xaGVfaaeVupDFjAZ">
+          题目加载中...
+        </h2>
+
+        <div id="options" class="space-y-3" data-page-node-id="Quri3q7Gq2eCK7X1BKwzfB">
+          <!-- 选项由 JS 生成 -->
+        </div>
+      </div>
+
+      <div class="flex gap-3" data-page-node-id="rD81lgFYW4e0jErjsQCSMR">
+        <button id="prev-btn" class="flex-1 py-3 rounded-xl bg-white/10 text-white font-medium backdrop-blur-sm border border-white/20 disabled:opacity-30 disabled:cursor-not-allowed" data-page-node-id="bOTI9rfjaYm0QG68fqL59p">
+          上一题
+        </button>
+        <button id="next-btn" class="flex-1 py-3 rounded-xl bg-gradient-to-r from-yellow-400 to-pink-500 text-white font-semibold shadow-lg disabled:opacity-50 disabled:cursor-not-allowed" data-page-node-id="x2PjNI9Cy8GU4waZPv594F">
+          下一题
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 结果页 -->
+  <section id="result-page" class="page hidden min-h-screen p-4" data-page-node-id="7FfE3cCzk6Zyl3FpAr4Bi1">
+    <div class="max-w-md mx-auto pt-2 pb-8" data-page-node-id="AE42UyPt0gVftVXlORGERB">
+      <div id="result-card" class="card p-6 mb-6 bg-white" data-page-node-id="TRJqfpcyGP2JhpaufFh2ps">
+        <!-- 头部 -->
+        <div class="text-center mb-6" data-page-node-id="f4HDfPHLE5FdC5GeApD6uG">
+          <div id="type-emoji" class="text-6xl mb-2" data-page-node-id="Sxp6wtPY5VF6jlqCAvqwsB">🐉</div>
+          <h2 class="text-sm text-gray-500 mb-1" data-page-node-id="AADriRrVdmqRGF602G3nCb">你的财运体质是</h2>
+          <h1 id="type-name" class="text-2xl font-bold text-gray-900 mb-1" data-page-node-id="29mNnXpShWbwriQMMPe9HU">貔貅型</h1>
+          <p id="type-tag" class="text-sm text-purple-600 font-medium" data-page-node-id="qTrjUW0VcXUB5VQIGWDm56">只进不出 · 财富守门员</p>
+          <p id="type-rarity" class="text-xs text-gray-400 mt-2"></p>
+        </div>
+
+        <!-- 综合财运指数（环形图） -->
+        <div class="mb-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-5">
+          <div class="relative w-40 h-40 mx-auto mb-2">
+            <canvas id="fortune-chart"></canvas>
+            <div class="absolute inset-0 flex flex-col items-center justify-center">
+              <div id="fortune-number" class="text-3xl font-bold text-purple-600">0</div>
+              <div class="text-[10px] text-gray-400">综合财运指数</div>
+            </div>
+          </div>
+          <p id="fortune-level" class="text-center text-lg font-bold text-gray-900 mb-1"></p>
+          <p id="fortune-level-desc" class="text-center text-xs text-gray-500 leading-relaxed"></p>
+        </div>
+
+        <!-- 雷达图 -->
+        <div class="mb-6" data-page-node-id="CkPhjpqW6qyayUc6DwLUvr">
+          <h3 class="text-center text-sm font-bold text-gray-700 mb-3">六维财运画像</h3>
+          <canvas id="radar-chart" height="220" data-page-node-id="wFGg8bDUDFxHXiaiz94kJe"></canvas>
+        </div>
+
+        <!-- 一句话画像 -->
+        <div class="bg-purple-50 rounded-xl p-4 mb-5" data-page-node-id="6m4CHIfdh8GE1QvlyEPM5F">
+          <p id="type-desc" class="text-sm text-gray-700 leading-relaxed" data-page-node-id="osVyDfPGm5IXWENzXrZIEa">
+            你对金钱有天生的"占有欲"，账户余额上涨本身就是最大的快乐。
+          </p>
+        </div>
+
+        <!-- 六维评分条 -->
+        <div class="mb-6">
+          <h3 class="text-sm font-bold text-gray-700 mb-3">维度得分明细</h3>
+          <div id="score-bars" class="space-y-4"></div>
+        </div>
+
+        <!-- 解读 -->
+        <div class="space-y-4 mb-6" data-page-node-id="WCVWx7QuRP0yK2M534JyzP">
+          <div data-page-node-id="bsfygExBuoacAEGQeH8GN9">
+            <h3 class="font-bold text-gray-900 text-sm mb-2 flex items-center gap-2" data-page-node-id="kdvclpGx1z7ldy4GrifuHE">
+              <span class="w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs" data-page-node-id="gwgEllrxS4ghhNivFQyTe9">✓</span>
+              财富优势
+            </h3>
+            <ul id="type-advantages" class="text-sm text-gray-700 space-y-1 pl-7 list-disc" data-page-node-id="PooodqA85RmzV9BCKZc2OD"></ul>
+          </div>
+          <div data-page-node-id="A6x7YlWLAsj0fxoOn8yJip">
+            <h3 class="font-bold text-gray-900 text-sm mb-2 flex items-center gap-2" data-page-node-id="eKSJuZu6tVf3EodTNtZHJH">
+              <span class="w-5 h-5 rounded-full bg-red-100 text-red-500 flex items-center justify-center text-xs" data-page-node-id="GX5YFPx85Tbzr7dBIL5N5U">!</span>
+              常见陷阱
+            </h3>
+            <ul id="type-traps" class="text-sm text-gray-700 space-y-1 pl-7 list-disc" data-page-node-id="51cHZa5NlAWgdLHgCgHajD"></ul>
+          </div>
+        </div>
+
+        <!-- 财运提升指南 -->
+        <div class="mb-6">
+          <h3 class="font-bold text-gray-900 text-sm mb-3 flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-xs">💰</span>
+            财运提升指南
+          </h3>
+
+          <div class="space-y-3">
+            <div class="bg-amber-50 rounded-xl p-4">
+              <p class="text-xs font-bold text-amber-700 mb-2">⚡ 今天就能做的 3 件事</p>
+              <ul id="guide-short" class="text-sm text-gray-700 space-y-1.5"></ul>
+            </div>
+            <div class="bg-blue-50 rounded-xl p-4">
+              <p class="text-xs font-bold text-blue-700 mb-2">📅 30天财运养成计划</p>
+              <ul id="guide-month" class="text-sm text-gray-700 space-y-1.5"></ul>
+            </div>
+            <div class="bg-emerald-50 rounded-xl p-4">
+              <p class="text-xs font-bold text-emerald-700 mb-2">🌱 长期财富观升级</p>
+              <ul id="guide-long" class="text-sm text-gray-700 space-y-1.5"></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 开运锦囊 -->
+        <div class="mb-4">
+          <h3 class="font-bold text-gray-900 text-sm mb-3 flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center text-xs">🧧</span>
+            你的开运锦囊
+          </h3>
+          <div class="grid grid-cols-2 gap-2">
+            <div class="bg-gray-50 rounded-xl p-3 text-center">
+              <div class="text-xs text-gray-500 mb-1">🎨 幸运色</div>
+              <div id="lucky-color" class="text-sm font-bold text-gray-900"></div>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-3 text-center">
+              <div class="text-xs text-gray-500 mb-1">🔢 幸运数字</div>
+              <div id="lucky-number" class="text-sm font-bold text-gray-900"></div>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-3 text-center">
+              <div class="text-xs text-gray-500 mb-1">✨ 旺财习惯</div>
+              <div id="lucky-habit" class="text-sm font-bold text-gray-900"></div>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-3 text-center">
+              <div class="text-xs text-gray-500 mb-1">💼 天命副业</div>
+              <div id="lucky-career" class="text-sm font-bold text-gray-900"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 底部文案 -->
+        <div class="text-center text-xs text-gray-400 mt-6 pt-4 border-t border-gray-100" data-page-node-id="GcmyRPi1j5ooS5jw0RVSC3">
+          仅供娱乐参考 · 扫码测测你的财运体质
+        </div>
+      </div>
+
+      <!-- 操作按钮 -->
+      <div class="space-y-3" data-page-node-id="wOu2VgS9pLGC5OtzTTvfLU">
+        <button id="save-img-btn" class="btn-primary w-full py-3 rounded-xl text-white font-semibold shadow-lg" data-page-node-id="Qju8N3ml0mO4F9G17tZudA">
+          📸 保存测试结果长图
+        </button>
+        <button id="copy-link-btn" class="w-full py-3 rounded-xl bg-white/10 text-white font-medium backdrop-blur-sm border border-white/20" data-page-node-id="fK35pQlzpFGNUL4eJKDfcY">
+          🔗 复制结果链接
+        </button>
+        <div class="grid grid-cols-2 gap-3" data-page-node-id="EpJ6eQh65J9GzIufVTRssY">
+          <button id="retry-btn" class="py-3 rounded-xl bg-white/10 text-white font-medium backdrop-blur-sm border border-white/20" data-page-node-id="oaLNLC8fRymGgP0qvkIPP3">
+            🔄 再测一次
+          </button>
+          <button id="review-btn" class="py-3 rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold shadow-lg" data-page-node-id="JLi1Ny8x5u3Ag1grSNbUsB">
+            🎁 好评有礼
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 生成的图片展示页 -->
+  <section id="image-page" class="page hidden min-h-screen p-4" data-page-node-id="icQBFgZdNpqeZSeGwfUTr3">
+    <div class="max-w-md mx-auto pt-4 pb-8 text-center" data-page-node-id="v3EkHM2pJQJ0wKrt9pnzoD">
+      <h2 class="text-white text-lg font-bold mb-4" data-page-node-id="Y2ahk0XtqzksroUonn7n8p">长按保存图片 / 点击下方下载</h2>
+      <div id="generated-image-container" class="mb-6 rounded-2xl overflow-hidden shadow-2xl" data-page-node-id="Hli1is1Nsp96O04UDm9aoa"></div>
+      <button id="download-img-btn" class="btn-primary w-full py-3 rounded-xl text-white font-semibold mb-3 shadow-lg" data-page-node-id="gZPkJGKzo4ilsTaZ7TCuzj">
+        ⬇️ 下载到本地
+      </button>
+      <button id="back-result-btn" class="w-full py-3 rounded-xl bg-white/10 text-white font-medium backdrop-blur-sm border border-white/20" data-page-node-id="exjSfFFEXIGAvysutBrDsh">
+        返回结果页
+      </button>
+    </div>
+  </section>
+
+  <!-- 好评有礼弹窗 -->
+  <div id="review-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm" data-page-node-id="lblgRLDKjEnQawemQ9UHJ7">
+    <div class="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl transform scale-100 transition-transform" data-page-node-id="5Nwy53mX49HoGFFZzIRlDi">
+      <div class="text-center mb-4" data-page-node-id="C0JgDOwDwEiHwx2aBT2uLq">
+        <div class="text-4xl mb-2" data-page-node-id="GYKRlzcjEEe4CtVeMOdKIx">🎁</div>
+        <h3 class="text-lg font-bold text-gray-900" data-page-node-id="kaU94lpSUsvDsBNRThxiSE">好评有礼</h3>
+      </div>
+      <p class="text-sm text-gray-700 leading-relaxed mb-6" data-page-node-id="60yfDnm0494s3Nm0dB97xX">
+        店铺好评后，请联系客服并发送好评截图，即可获得 <span class="text-red-500 font-bold" data-page-node-id="H510lIVY4tWm0nILhNBCy1">1元返现</span>。
+      </p>
+      <p class="text-xs text-gray-500 mb-6 bg-gray-50 p-3 rounded-lg" data-page-node-id="Apj835740oU7s7R6EFP8al">
+        温馨提示：请确认已完成好评并截图，再联系客服兑换返现哦～
+      </p>
+      <button id="close-review-btn" class="btn-primary w-full py-3 rounded-xl text-white font-semibold" data-page-node-id="DbVZ1KttRIksqg9tsZhGeU">
+        我知道了
+      </button>
+    </div>
+  </div>
+
+  <!-- 提示消息 -->
+  <div id="toast" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 hidden bg-black/80 text-white text-sm px-5 py-3 rounded-xl" data-page-node-id="hJgXvCrdidtDvrvHAAh8Eh">
+    提示内容
+  </div>
+
+  <script src="supabase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
