@@ -8,6 +8,16 @@ body {
   line-height: 1.6;
 }
 
+/* 浅金主题背景 */
+.fortune-bg {
+  background: linear-gradient(160deg, #fdf9f0 0%, #f9f0da 45%, #f3e5c4 100%);
+}
+
+/* 金色渐变 */
+.gold-gradient {
+  background: linear-gradient(135deg, #dcae4a 0%, #c9a227 55%, #a8841c 100%);
+}
+
 .page {
   display: none;
   animation: fadeIn 0.4s ease-out;
@@ -34,18 +44,29 @@ body {
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.98);
+  background: #fffdf8;
+  border: 1px solid #f0e4c4;
   border-radius: 1.5rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 32px rgba(168, 132, 28, 0.12);
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  background: linear-gradient(135deg, #dcae4a 0%, #c9a227 55%, #a8841c 100%);
   transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 8px 20px rgba(168, 132, 28, 0.35);
 }
 
 .btn-primary:active {
   transform: scale(0.98);
+}
+
+/* 金色高亮区块 */
+.fortune-highlight {
+  background: linear-gradient(150deg, #fdf6e7 0%, #f8edd2 100%);
+  border: 1px solid #f0e4c4;
 }
 
 /* 选项按钮 */
@@ -54,9 +75,9 @@ body {
   text-align: left;
   padding: 0.875rem 1rem;
   border-radius: 1rem;
-  border: 2px solid #f3f4f6;
+  border: 2px solid #f0e8d2;
   background: #ffffff;
-  color: #374151;
+  color: #5a4d35;
   font-size: 0.95rem;
   transition: all 0.2s;
   display: flex;
@@ -65,14 +86,14 @@ body {
 }
 
 .option-btn:hover {
-  border-color: #c4b5fd;
-  background: #faf9ff;
+  border-color: #dcae4a;
+  background: #fdf9f0;
 }
 
 .option-btn.selected {
-  border-color: #8b5cf6;
-  background: linear-gradient(135deg, #f3f0ff 0%, #fdf2f8 100%);
-  color: #7c3aed;
+  border-color: #c9a227;
+  background: linear-gradient(135deg, #fdf6e7 0%, #f9efd2 100%);
+  color: #8a6d14;
   font-weight: 600;
 }
 
@@ -80,8 +101,8 @@ body {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
-  background: #f3f4f6;
-  color: #6b7280;
+  background: #f3ead2;
+  color: #9c8a68;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,14 +111,14 @@ body {
 }
 
 .option-btn.selected .option-number {
-  background: #8b5cf6;
+  background: #c9a227;
   color: white;
 }
 
-/* 结果页特殊样式 */
+/* 结果页顶部装饰条 */
 #result-card {
-  background: white;
   position: relative;
+  overflow: hidden;
 }
 
 #result-card::before {
@@ -107,8 +128,7 @@ body {
   left: 0;
   right: 0;
   height: 6px;
-  background: linear-gradient(90deg, #8b5cf6, #ec4899, #f59e0b);
-  border-radius: 1.5rem 1.5rem 0 0;
+  background: linear-gradient(90deg, #e6c56a, #c9a227, #a8841c, #c9a227, #e6c56a);
 }
 
 /* 弹窗动画 */
@@ -121,36 +141,11 @@ body {
   opacity: 1;
 }
 
-/* 响应式优化 */
-@media (min-width: 640px) {
-  .card {
-    border-radius: 1.5rem;
-  }
-}
-
-@media (max-width: 380px) {
-  .text-6xl {
-    font-size: 3rem;
-  }
-  .text-2xl {
-    font-size: 1.25rem;
-  }
-  .option-btn {
-    padding: 0.75rem 0.875rem;
-    font-size: 0.875rem;
-  }
-}
-
-/* Toast */
-#toast {
-  pointer-events: none;
-}
-
 /* 六维评分条 */
 .score-bar-track {
   width: 100%;
   height: 10px;
-  background: #f3f4f6;
+  background: #f3ead2;
   border-radius: 999px;
   overflow: hidden;
 }
@@ -176,7 +171,7 @@ body {
   position: absolute;
   left: 0;
   font-weight: bold;
-  color: #d97706;
+  color: #c9a227;
 }
 
 #guide-month li::before {
@@ -184,7 +179,7 @@ body {
   position: absolute;
   left: 0;
   font-weight: bold;
-  color: #2563eb;
+  color: #a8841c;
 }
 
 #guide-long li::before {
@@ -192,5 +187,24 @@ body {
   position: absolute;
   left: 0;
   font-weight: bold;
-  color: #059669;
+  color: #8a6d14;
+}
+
+/* Toast */
+#toast {
+  pointer-events: none;
+}
+
+/* 小屏适配 */
+@media (max-width: 380px) {
+  .text-6xl {
+    font-size: 3rem;
+  }
+  .text-2xl {
+    font-size: 1.25rem;
+  }
+  .option-btn {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.875rem;
+  }
 }
