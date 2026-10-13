@@ -827,7 +827,7 @@ function retryTest() {
   renderQuestion();
 }
 
-// ===== 好评有礼弹窗 =====
+// ===== 问题反馈弹窗 =====
 function openReviewModal() {
   reviewModal.classList.remove('hidden');
   reviewModal.classList.add('flex');

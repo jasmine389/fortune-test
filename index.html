@@ -198,7 +198,7 @@
             🔄 再测一次
           </button>
           <button id="review-btn" class="py-3 rounded-xl bg-gradient-to-r from-[#d97706] to-[#b45309] text-white font-semibold shadow-md">
-            🎁 好评有礼
+            💬 问题反馈
           </button>
         </div>
       </div>
@@ -219,18 +219,23 @@
     </div>
   </section>
 
-  <!-- 好评有礼弹窗 -->
+  <!-- 问题反馈弹窗 -->
   <div id="review-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
     <div class="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl">
       <div class="text-center mb-4">
-        <div class="text-4xl mb-2">🎁</div>
-        <h3 class="text-lg font-bold text-[#3d3325]">好评有礼</h3>
+        <div class="text-4xl mb-2">💬</div>
+        <h3 class="text-lg font-bold text-[#3d3325]">使用反馈</h3>
       </div>
-      <p class="text-sm text-[#5a4d35] leading-relaxed mb-6">
-        店铺好评后，请联系客服并发送好评截图，即可获得 <span class="text-[#b45309] font-bold">1元返现</span>。
+      <p class="text-sm text-[#5a4d35] leading-relaxed mb-4">
+        如果测的过程中遇到问题，欢迎随时联系客服说明，我们会在24小时内处理：
       </p>
-      <p class="text-xs text-[#9c8a68] mb-6 bg-[#faf4e4] p-3 rounded-lg">
-        温馨提示：请确认已完成好评并截图，再联系客服兑换返现哦～
+      <ul class="text-sm text-[#5a4d35] leading-relaxed mb-4 pl-1">
+        <li>· 卡密提示无效或次数已用完</li>
+        <li>· 网页打不开、答题卡住</li>
+        <li>· 结果页面显示异常</li>
+      </ul>
+      <p class="text-xs text-[#9c8a68] mb-5 bg-[#faf4e4] p-3 rounded-lg leading-relaxed">
+        你的每一条反馈，我们都会认真看。<br>也欢迎在店铺留下你的真实感受，那是对我们最大的帮助。
       </p>
       <button id="close-review-btn" class="btn-primary w-full py-3 rounded-xl text-white font-semibold">
         我知道了
